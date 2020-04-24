@@ -1,0 +1,36 @@
+# borrowed from: https://github.com/puckel/docker-airflow
+version: '3.7'
+
+services:
+
+    app_db:
+        image: postgres:11
+        container_name: app_db
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+        ports:
+            - "5431:5432"
+
+    pyserver:
+        build: .
+        image: marwamc/pyserver:latest
+        container_name: pyserver
+        depends_on:
+            - app_db
+        environment:
+            - PGPASSWORD=etl
+            - PYTHONPATH=/app
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+        volumes:
+            - ./src:/app/src
+        ports:
+            - "8989:8989"
