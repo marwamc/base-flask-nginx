@@ -13,20 +13,20 @@ docker_run := docker run -itd --rm
 #-----------------------------------------------------------------------------------------
 # SECTION: MANAGE SERVICE
 build:
-	docker-compose -f nginx-service.yml build
+	docker-compose -f pserver.yml build
 
 push:
-
+	docker-compose -f pserver.yml push
 
 start: build
-	docker-compose -f nginx-service.yml up
+	docker-compose -f pserver.yml up
 
 stop:
-	docker-compose -f nginx-service.yml down
+	docker-compose -f pyserver.yml down
 
 # make SERVICE=pyserver restart
 restart:
-	docker-compose -f nginx-service.yml restart ${SERVICE}
+	docker-compose -f pyserver.yml restart ${SERVICE}
 
 # make SERVICE=pyserver shell
 # make SERVICE=postgres_airflow shell

@@ -7,9 +7,9 @@ services:
         image: postgres:11
         container_name: app_db
         environment:
-            - POSTGRES_USER=airflow
-            - POSTGRES_PASSWORD=airflow
-            - POSTGRES_DB=airflow
+            - POSTGRES_USER=pyserver
+            - POSTGRES_PASSWORD=pyserver
+            - POSTGRES_DB=pyserver
         logging:
             options:
                 max-size: 10m
@@ -24,7 +24,7 @@ services:
         depends_on:
             - app_db
         environment:
-            - PGPASSWORD=etl
+            - PGPASSWORD=pyserver
             - PYTHONPATH=/app
         logging:
             options:

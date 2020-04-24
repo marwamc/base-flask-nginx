@@ -14,5 +14,5 @@ def hello_world():
 
 @app.route('/echo_request')
 def echo_request():
-    return jsonify(dict(request.headers))
+    return jsonify((hello_world(), dict(request.headers)))
 
