@@ -1,2 +1,9 @@
+# IDEA
 .idea
 .DS_Store
+
+# MAC
+.DS_Store
+
+# COMPILE
+*.pyc
