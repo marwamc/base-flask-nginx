@@ -1,7 +1,5 @@
 from flask import Flask, request, jsonify
-
 from src import app
-
 
 @app.route('/')
 def hello_world():
@@ -11,8 +9,6 @@ def hello_world():
         which is hosted inside a Docker image!
     """
 
-
 @app.route('/echo_request')
 def echo_request():
     return jsonify((hello_world(), dict(request.headers)))
-

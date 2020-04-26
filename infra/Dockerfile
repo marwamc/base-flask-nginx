@@ -28,7 +28,6 @@ RUN touch /var/log/supervisor/supervisord.log
 EXPOSE 8989:8989
 ENV SERVICE_HOME="/app/pyserver"
 RUN mkdir -p ${SERVICE_HOME}
-#ADD . ${SERVICE_HOME}
 
 # setup entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
