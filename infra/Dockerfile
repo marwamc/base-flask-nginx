@@ -6,7 +6,7 @@ FROM nginx
 RUN apt-get update && apt-get install -y supervisor uwsgi python python-pip procps vim && \
     /usr/bin/pip install uwsgi==2.0.17 flask==1.0.2
 
-# Copy the configuration file from the current directory and paste 
+# Copy the configuration file from the current directory and paste
 # it inside the container to use it as Nginx's default config.
 COPY nginx.conf /etc/nginx/nginx.conf
 
@@ -24,12 +24,14 @@ RUN ln -s /etc/uwsgi/apps-available/uwsgi.ini /etc/uwsgi/apps-enabled/uwsgi.ini
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN touch /var/log/supervisor/supervisord.log
 
+# Sprinkle the fairy dust
 EXPOSE 8989:8989
+ENV SERVICE_HOME="/app/pyserver"
+RUN mkdir -p ${SERVICE_HOME}
+#ADD . ${SERVICE_HOME}
 
 # setup entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-ENV SERVICE_HOME="/app"
-ADD . ${SERVICE_HOME}
 
 # https://github.com/moby/moby/issues/31243#issuecomment-406879017
 RUN ln -s /usr/local/bin/docker-entrypoint.sh / && \

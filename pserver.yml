@@ -18,18 +18,19 @@ services:
             - "5431:5432"
 
     pyserver:
+        build: infra/
         image: marwamc/pyserver:latest
         container_name: pyserver
         depends_on:
             - app_db
         environment:
             - PGPASSWORD=pyserver
-            - PYTHONPATH=/app
+            - PYTHONPATH=/app/pyserver/src
         logging:
             options:
                 max-size: 10m
                 max-file: "3"
         volumes:
-            - ./src:/app/src
+            - ./:/app/pyserver
         ports:
             - "8989:8989"

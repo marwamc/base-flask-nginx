@@ -7,7 +7,7 @@ SHELL := bash
 .SUFFIXES:
 
 # VARS
-SERVICE := nginx-service
+SERVICE := pyserver
 docker_run := docker run -itd --rm
 
 #-----------------------------------------------------------------------------------------
