@@ -7,17 +7,19 @@ SHELL := bash
 .SUFFIXES:
 
 # VARS
-SERVICE := nginx-service
+SERVICE := pyserver
 docker_run := docker run -itd --rm
 
 #-----------------------------------------------------------------------------------------
-# SECTION: MANAGE SERVICE
+# SECTION: MANAGE IMAGE
 build:
 	docker-compose -f pserver.yml build
 
 push:
 	docker-compose -f pserver.yml push
 
+#-----------------------------------------------------------------------------------------
+# SECTION: RUN IMAGE
 start: build
 	docker-compose -f pserver.yml up
 
@@ -39,6 +41,3 @@ cleanup:
 	docker rmi -f $(docker images -a -q)
 
 default: start
-
-#-----------------------------------------------------------------------------------------
-# SECTION: ADMIN
