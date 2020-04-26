@@ -1,4 +1,4 @@
-# base-flask-nginx
+# pyserver
 a simple python (flask) webserver image
 
 # References
