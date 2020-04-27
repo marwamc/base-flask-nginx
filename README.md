@@ -7,14 +7,13 @@ The `infra` sets up a nginx server on `0.0.0.0:8989`
 The `src` directory contains the flask/python code. This is the fairy dust..
 
 ### Option 1: fork and clone this repo
-In cloned directory, add you python code to the `src` module following python best practices.
-
 Then simply run:
 ```bash
 make start
 make shell
 make stop
 ```
+In the cloned directory, add your python code to the `src` module following python best practices.
   
 ### Option 2: pull image from dockerhub
 The `uwsgi.ini` file in the image presumes the following flask structure:
@@ -31,7 +30,9 @@ callable=app
 ~/project2/src/views.py
 ```
 
-#### 2. Then run the following command inside `~/project2/`
+Refer to the sample [main.py](./src/main.py) and [views.py](./src/views.py) for examples.
+
+#### 2. Then run the following command inside `~/project2`
  ```bash
 docker run --rm -v $(pwd)/src:/app/pyserver/src -p 8989:8989 --name pyserver_test marwamc/pyserver:latest 
 ```
